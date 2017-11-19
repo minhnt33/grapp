@@ -82,6 +82,38 @@ public class Patient {
     }
 
     public String getEmail() {
+        return _email.get();
+    }
+
+    public IntegerProperty getIdProp() {
+        return _id;
+    }
+
+    public StringProperty getFirstNameProp() {
+        return _firstName;
+    }
+
+    public StringProperty getLastNameProp() {
+        return _lastName;
+    }
+
+    public StringProperty getGenderProp() {
+        return _gender;
+    }
+
+    public ObjectProperty<LocalDate> getBirthDateProp() {
+        return _dob;
+    }
+
+    public StringProperty getAddressProp() {
+        return _address;
+    }
+
+    public StringProperty getPhoneNumberProp() {
+        return _phoneNumber;
+    }
+
+    public StringProperty getEmailProp() {
         return _email;
     }
 }
