@@ -16,9 +16,9 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="85.0" prefWidth="1596.0">
                            <children>
-                              <Button layoutX="14.0" layoutY="8.0" mnemonicParsing="false" prefWidth="80.0" text="Add" />
-                              <Button layoutX="115.0" layoutY="8.0" mnemonicParsing="false" prefWidth="80.0" text="Edit" />
-                              <Button layoutX="216.0" layoutY="8.0" mnemonicParsing="false" prefWidth="80.0" text="Remove" />
+                              <Button layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onAction="#onClickAdd" prefWidth="80.0" text="Add" />
+                              <Button layoutX="115.0" layoutY="8.0" mnemonicParsing="false" onAction="#onClickEdit" prefWidth="80.0" text="Edit" />
+                              <Button layoutX="216.0" layoutY="8.0" mnemonicParsing="false" onAction="#onClickRemove" prefWidth="80.0" text="Remove" />
                            </children>
                         </AnchorPane>
                               <TableView fx:id="_patientTable" minWidth="345.0" tableMenuButtonVisible="true">

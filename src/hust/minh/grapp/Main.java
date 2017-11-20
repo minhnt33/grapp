@@ -2,6 +2,7 @@ package hust.minh.grapp;
 
 import hust.minh.grapp.model.Patient;
 import hust.minh.grapp.model.PatientListWrapper;
+import hust.minh.grapp.view.PatientFormDialogController;
 import hust.minh.grapp.view.PatientTableController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -9,8 +10,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import javax.xml.bind.JAXBContext;
@@ -41,6 +44,10 @@ public class Main extends Application {
         showPatientTable();
     }
 
+    @Override
+    public void stop(){
+        savePatientDataToFile(new File(_filePath));
+    }
 
     public static void main(String[] args) {
         launch(args);
@@ -80,6 +87,40 @@ public class Main extends Application {
         }
     }
 
+    public boolean showPatientForm(Patient patient) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/PatientFormDialog.fxml"));
+            TitledPane page = loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Patient Information");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(_primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            PatientFormDialogController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setPatient(patient);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * Load data into patient list from xml file
+     * @param file
+     */
     public void loadPatientDataFromFile(File file)
     {
         try
@@ -102,6 +143,10 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Save patient data list into xml file
+     * @param file
+     */
     public void savePatientDataToFile(File file) {
         try {
             JAXBContext context = JAXBContext.newInstance(PatientListWrapper.class);

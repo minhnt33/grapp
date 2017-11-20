@@ -21,14 +21,14 @@ public class Patient {
     private final StringProperty email;
 
     public Patient() {
-        id = new SimpleStringProperty("0");
-        firstName = new SimpleStringProperty("Minh");
-        lastName = new SimpleStringProperty("Nguyen");
-        gender = new SimpleStringProperty("Male");
-        dob = new SimpleObjectProperty(LocalDate.of(1995,3,3));
-        address = new SimpleStringProperty("Hanoi");
-        phoneNumber = new SimpleStringProperty("0983234295");
-        email = new SimpleStringProperty("minh@gmail.com");
+        id = new SimpleStringProperty(null);
+        firstName = new SimpleStringProperty(null);
+        lastName = new SimpleStringProperty(null);
+        gender = new SimpleStringProperty(null);
+        dob = new SimpleObjectProperty(null);
+        address = new SimpleStringProperty(null);
+        phoneNumber = new SimpleStringProperty(null);
+        email = new SimpleStringProperty(null);
     }
 
     public void setFirstName(String firstName) {
@@ -45,6 +45,11 @@ public class Patient {
 
     public void setBirthdate(int year, int month, int day) {
         this.dob.set(LocalDate.of(year, month, day));
+    }
+
+    public void setBirthdate(LocalDate date)
+    {
+        dob.set(date);
     }
 
     public void setAddress(String address) {

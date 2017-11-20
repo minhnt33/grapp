@@ -56,32 +56,55 @@ public class PatientTableController {
         _emailCol.setCellValueFactory(cellData -> cellData.getValue().getEmailProp());
     }
 
-    @FXML
-    private void OnAddPatient() {
-
-    }
-
-    private void OnRemovePatient() {
-        int selectedIndex = _patientTable.getSelectionModel().getSelectedIndex();
-
-        if (selectedIndex >= 0) {
-            _patientTable.getItems().remove(selectedIndex);
-        } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(_main.getPrimaryStage());
-            alert.setTitle("No Selection");
-            alert.setHeaderText("No Person Selected");
-            alert.setContentText("Please select a person in the table.");
-            alert.showAndWait();
-        }
-    }
-
     private void setColumnData(Patient patient) {
 
     }
 
     public void showPatientData(Patient patient) {
 
+    }
+
+    @FXML
+    private void onClickAdd() {
+        Patient tempPerson = new Patient();
+        boolean okClicked = _main.showPatientForm(tempPerson);
+        if (okClicked) {
+            _main.getPatientList().add(tempPerson);
+        }
+    }
+
+    @FXML
+    private void onClickEdit() {
+        Patient selectedPerson = _patientTable.getSelectionModel().getSelectedItem();
+        if (selectedPerson != null) {
+            boolean okClicked = _main.showPatientForm(selectedPerson);
+        } else {
+            // Nothing selected.
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(_main.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Person Selected");
+            alert.setContentText("Please select a patient in the table.");
+
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void onClickRemove() {
+        int selectedIndex = _patientTable.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            _patientTable.getItems().remove(selectedIndex);
+        } else {
+            // Nothing selected.
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(_main.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Person Selected");
+            alert.setContentText("Please select a patient in the table.");
+
+            alert.showAndWait();
+        }
     }
 
     public void setMain(Main main) {

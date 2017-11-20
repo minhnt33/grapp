@@ -10,22 +10,13 @@
         <phoneNumber>023894295</phoneNumber>
     </patient>
     <patient>
-        <address>Hai Phong</address>
+        <address>Ho Chi Minh</address>
         <birthdate>1995-03-03</birthdate>
-        <email>minh@gmail.com</email>
-        <firstName>Ha</firstName>
-        <gender>Female</gender>
-        <lastName>Nguyen</lastName>
-        <phoneNumber>0983234295</phoneNumber>
-    </patient>
-    <patient>
-        <address>Hanoi</address>
-        <birthdate>1995-03-03</birthdate>
-        <email>minh@gmail.com</email>
-        <firstName>Minh</firstName>
+        <email>hang@gmail.com</email>
+        <firstName>Hang</firstName>
         <gender>Male</gender>
         <lastName>Nguyen</lastName>
-        <phoneNumber>0983234295</phoneNumber>
+        <phoneNumber>01656098765</phoneNumber>
     </patient>
     <patient>
         <address>Hanoi</address>
