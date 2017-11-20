@@ -1,8 +1,9 @@
 package hust.minh.grapp.view;
 
+import hust.minh.grapp.Main;
 import hust.minh.grapp.model.Patient;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -13,7 +14,7 @@ public class PatientTableController {
     private TableView<Patient> _patientTable;
 
     @FXML
-    private TableColumn<Patient, Integer> _idCol;
+    private TableColumn<Patient, String> _idCol;
 
     @FXML
     private TableColumn<Patient, String> _firstNameCol;
@@ -36,14 +37,16 @@ public class PatientTableController {
     @FXML
     private TableColumn<Patient, String> _emailCol;
 
+    private Main _main;
+
     public PatientTableController() {
 
     }
 
     @FXML
     private void initialize() {
-        // Set data delegate
-        _idCol.setCellValueFactory(cellData -> cellData.getValue().getIdProp().asObject());
+        // Initialize table data in all columns
+        _idCol.setCellValueFactory(cellData -> cellData.getValue().getIdProp());
         _firstNameCol.setCellValueFactory(cellData -> cellData.getValue().getFirstNameProp());
         _lastNameCol.setCellValueFactory(cellData -> cellData.getValue().getLastNameProp());
         _genderCol.setCellValueFactory(cellData -> cellData.getValue().getGenderProp());
@@ -53,7 +56,36 @@ public class PatientTableController {
         _emailCol.setCellValueFactory(cellData -> cellData.getValue().getEmailProp());
     }
 
-    public void setTableItems(ObservableList<Patient> patients) {
-        _patientTable.setItems(patients);
+    @FXML
+    private void OnAddPatient() {
+
+    }
+
+    private void OnRemovePatient() {
+        int selectedIndex = _patientTable.getSelectionModel().getSelectedIndex();
+
+        if (selectedIndex >= 0) {
+            _patientTable.getItems().remove(selectedIndex);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(_main.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Person Selected");
+            alert.setContentText("Please select a person in the table.");
+            alert.showAndWait();
+        }
+    }
+
+    private void setColumnData(Patient patient) {
+
+    }
+
+    public void showPatientData(Patient patient) {
+
+    }
+
+    public void setMain(Main main) {
+        _main = main;
+        _patientTable.setItems(main.getPatientList());
     }
 }

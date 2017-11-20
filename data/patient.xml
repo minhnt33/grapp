@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<patients>
+    <patient>
+        <address>Hanoi</address>
+        <birthdate>1995-03-03</birthdate>
+        <email>minh@gmail.com</email>
+        <firstName>Hung</firstName>
+        <gender>Male</gender>
+        <lastName>Tran</lastName>
+        <phoneNumber>023894295</phoneNumber>
+    </patient>
+    <patient>
+        <address>Hai Phong</address>
+        <birthdate>1995-03-03</birthdate>
+        <email>minh@gmail.com</email>
+        <firstName>Ha</firstName>
+        <gender>Female</gender>
+        <lastName>Nguyen</lastName>
+        <phoneNumber>0983234295</phoneNumber>
+    </patient>
+    <patient>
+        <address>Hanoi</address>
+        <birthdate>1995-03-03</birthdate>
+        <email>minh@gmail.com</email>
+        <firstName>Minh</firstName>
+        <gender>Male</gender>
+        <lastName>Nguyen</lastName>
+        <phoneNumber>0983234295</phoneNumber>
+    </patient>
+    <patient>
+        <address>Hanoi</address>
+        <birthdate>1995-03-03</birthdate>
+        <email>minh@gmail.com</email>
+        <firstName>Minh</firstName>
+        <gender>Male</gender>
+        <lastName>Nguyen</lastName>
+        <phoneNumber>0983234295</phoneNumber>
+    </patient>
+    <patient>
+        <address>Hanoi</address>
+        <birthdate>1995-03-03</birthdate>
+        <email>minh@gmail.com</email>
+        <firstName>Minh</firstName>
+        <gender>Male</gender>
+        <lastName>Nguyen</lastName>
+        <phoneNumber>0983234295</phoneNumber>
+    </patient>
+</patients>

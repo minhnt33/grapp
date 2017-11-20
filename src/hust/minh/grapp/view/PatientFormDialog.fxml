@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TitledPane minHeight="480.0" minWidth="800.0" prefHeight="480.0" prefWidth="800.0" text="Add Patient" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <AnchorPane>
+         <children>
+            <GridPane layoutX="32.4" layoutY="30.4" prefHeight="390.0" prefWidth="777.0" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <Label text="First Name" textAlignment="JUSTIFY" />
+                  <Label text="Last Name" textAlignment="JUSTIFY" GridPane.rowIndex="1" />
+                  <Label text="Birthdate" textAlignment="JUSTIFY" GridPane.rowIndex="2" />
+                  <Label text="Gender" textAlignment="JUSTIFY" GridPane.rowIndex="3" />
+                  <Label text="Address" textAlignment="JUSTIFY" GridPane.rowIndex="4" />
+                  <Label text="Phone Number" textAlignment="JUSTIFY" GridPane.rowIndex="5" />
+                  <Label text="Email" textAlignment="JUSTIFY" GridPane.rowIndex="6" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <Button layoutX="623.0" layoutY="444.0" mnemonicParsing="false" prefWidth="70.0" text="OK" />
+            <Button layoutX="709.0" layoutY="444.0" mnemonicParsing="false" prefWidth="70.0" text="Cancel" />
+         </children>
+      </AnchorPane>
+   </content>
+</TitledPane>

@@ -1,119 +1,126 @@
 package hust.minh.grapp.model;
 
-import javafx.beans.property.*;
+import hust.minh.grapp.util.LocalDateAdapter;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 
 public class Patient {
-    private final IntegerProperty _id;
-    private final StringProperty _firstName;
-    private final StringProperty _lastName;
-    private final StringProperty _gender;
-    private final ObjectProperty<LocalDate> _dob;
-    private final StringProperty _address;
-    private final StringProperty _phoneNumber;
-    private final StringProperty _email;
+    private final StringProperty id;
+    private final StringProperty firstName;
+    private final StringProperty lastName;
+    private final StringProperty gender;
+    private final ObjectProperty<LocalDate> dob;
+    private final StringProperty address;
+    private final StringProperty phoneNumber;
+    private final StringProperty email;
 
-    public Patient(int id) {
-        _id = new SimpleIntegerProperty(id);
-        _firstName = new SimpleStringProperty("Minh");
-        _lastName = new SimpleStringProperty("Nguyen");
-        _gender = new SimpleStringProperty("Male");
-        _dob = new SimpleObjectProperty(LocalDate.of(1995, 3, 3));
-        _address = new SimpleStringProperty("Hanoi");
-        _phoneNumber = new SimpleStringProperty("1234567890");
-        _email = new SimpleStringProperty("minh@gmail.com");
+    public Patient() {
+        id = new SimpleStringProperty("0");
+        firstName = new SimpleStringProperty("Minh");
+        lastName = new SimpleStringProperty("Nguyen");
+        gender = new SimpleStringProperty("Male");
+        dob = new SimpleObjectProperty(LocalDate.of(1995,3,3));
+        address = new SimpleStringProperty("Hanoi");
+        phoneNumber = new SimpleStringProperty("0983234295");
+        email = new SimpleStringProperty("minh@gmail.com");
     }
 
     public void setFirstName(String firstName) {
-        _firstName.set(firstName);
+        this.firstName.set(firstName);
     }
 
     public void setLastName(String lastName) {
-        _lastName.set(lastName);
+        this.lastName.set(lastName);
     }
 
     public void setGender(String gender) {
-        _gender.set(gender);
+        this.gender.set(gender);
     }
 
     public void setBirthdate(int year, int month, int day) {
-        _dob.set(LocalDate.of(year, month, day));
+        this.dob.set(LocalDate.of(year, month, day));
     }
 
     public void setAddress(String address) {
-        _address.set(address);
+        this.address.set(address);
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        _phoneNumber.set(phoneNumber);
+        this.phoneNumber.set(phoneNumber);
     }
 
     public void setEmail(String email) {
-        _email.set(email);
+        this.email.set(email);
     }
 
-    public int getId() {
-        return _id.get();
+    public String getId() {
+        return id.get();
     }
 
-    public String getFirsName() {
-        return _firstName.get();
+    public String getFirstName() {
+        return firstName.get();
     }
 
-    public String getLasName() {
-        return _lastName.get();
+    public String getLastName() {
+        return lastName.get();
     }
 
     public String getGender() {
-        return _gender.get();
+        return gender.get();
     }
 
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     public LocalDate getBirthdate() {
-        return _dob.get();
+        return dob.get();
     }
 
     public String getAddress() {
-        return _address.get();
+        return address.get();
     }
 
     public String getPhoneNumber() {
-        return _phoneNumber.get();
+        return phoneNumber.get();
     }
 
     public String getEmail() {
-        return _email.get();
+        return email.get();
     }
 
-    public IntegerProperty getIdProp() {
-        return _id;
+    public StringProperty getIdProp() {
+        return id;
     }
 
     public StringProperty getFirstNameProp() {
-        return _firstName;
+        return firstName;
     }
 
     public StringProperty getLastNameProp() {
-        return _lastName;
+        return lastName;
     }
 
     public StringProperty getGenderProp() {
-        return _gender;
+        return gender;
     }
 
     public ObjectProperty<LocalDate> getBirthDateProp() {
-        return _dob;
+        return dob;
     }
 
     public StringProperty getAddressProp() {
-        return _address;
+        return address;
     }
 
     public StringProperty getPhoneNumberProp() {
-        return _phoneNumber;
+        return phoneNumber;
     }
 
     public StringProperty getEmailProp() {
-        return _email;
+        return email;
     }
 }

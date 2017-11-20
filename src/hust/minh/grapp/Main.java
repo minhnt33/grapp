@@ -1,16 +1,22 @@
 package hust.minh.grapp;
 
 import hust.minh.grapp.model.Patient;
+import hust.minh.grapp.model.PatientListWrapper;
 import hust.minh.grapp.view.PatientTableController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import java.io.File;
 import java.io.IOException;
 
 public class Main extends Application {
@@ -18,14 +24,7 @@ public class Main extends Application {
 
     private Stage _primaryStage;
     private BorderPane _rootLayout;
-
-    public Main() {
-        _patients.add(new Patient(0));
-        _patients.add(new Patient(1));
-        _patients.add(new Patient(2));
-        _patients.add(new Patient(3));
-        _patients.add(new Patient(4));
-    }
+    private String _filePath;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -34,6 +33,11 @@ public class Main extends Application {
         primaryStage.show();
 
         initRootLayout();
+
+        _filePath = new File("").getAbsolutePath();
+        _filePath = _filePath.concat("/data/patient.xml");
+
+        loadPatientDataFromFile(new File(_filePath));
         showPatientTable();
     }
 
@@ -69,10 +73,64 @@ public class Main extends Application {
 
             // Setup Controller
             PatientTableController patientTableController = loader.getController();
-            patientTableController.setTableItems(_patients);
+            patientTableController.setMain(this);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void loadPatientDataFromFile(File file)
+    {
+        try
+        {
+            JAXBContext context = JAXBContext.newInstance(PatientListWrapper.class);
+            Unmarshaller um = context.createUnmarshaller();
+
+            // Reading xml from file and unmarshalling
+            PatientListWrapper wrapper = (PatientListWrapper) um.unmarshal(file);
+            _patients.clear();
+            _patients.addAll(wrapper.getPatients());
+        }
+        catch (Exception e)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Could not load data");
+            alert.setContentText("Could not load data from file:\n" + file.getPath());
+            alert.showAndWait();
+        }
+    }
+
+    public void savePatientDataToFile(File file) {
+        try {
+            JAXBContext context = JAXBContext.newInstance(PatientListWrapper.class);
+            Marshaller m = context.createMarshaller();
+            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            // Wrapping our person data.
+            PatientListWrapper wrapper = new PatientListWrapper();
+            wrapper.setPatients(_patients);
+
+            // Marshalling and saving XML to the file.
+            m.marshal(wrapper, file);
+
+        } catch (Exception e) { // catches ANY exception
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Could not save data");
+            alert.setContentText("Could not save data to file:\n" + file.getPath());
+
+            alert.showAndWait();
+        }
+    }
+
+    public Stage getPrimaryStage()
+    {
+        return _primaryStage;
+    }
+
+    public ObservableList<Patient> getPatientList() {
+        return _patients;
     }
 }
